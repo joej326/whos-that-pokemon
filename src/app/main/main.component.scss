@@ -1,0 +1,49 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  // text-align: center;
+  height: 100vh;
+  max-height: 100vh;
+  background: lightblue;
+
+  .container-main {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    width: 600px;
+
+    .image {
+      width: 250px;
+
+      img {
+        width: 100%;
+        transition: all 0.5;
+      }
+    }
+    .choices-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      transform: translateX(60px);
+
+      .input-and-label {
+        display: flex;
+        // flex-direction: column;
+        // justify-content: flex-start;
+        // margin: 0 100px;
+        width: 200px;
+        margin: 0 40px;
+        overflow: hidden;
+        align-items: center;
+      }
+    }
+    button {
+      margin-top: 10px;
+      min-width: 100px;
+    }
+  }
+}
+

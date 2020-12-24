@@ -1,0 +1,20 @@
+
+
+
+<div  class="main">
+  <div class="container-main">
+    <div class="image">
+      <img [style.filter]="correctSubmit ? 'unset' : 'brightness(0%)'" [src]="displayedPokemon?.sprites?.front_default" alt="">
+    </div>
+    <!-- <p>{{pokemon?.id}}</p> -->
+    <!-- <p>{{pokemon?.name | titlecase}}</p> -->
+    <div class="choices-container form-check">
+      <div *ngFor="let choice of choices" class="input-and-label">
+        <input (click)="handleChoice(choice.id)" class="form-check-input" type="radio" name="choice" [id]="choice?.id">
+        <label class="form-check-label" [for]="choice?.id">&nbsp;&nbsp;{{ choice?.name | titlecase }}</label>
+      </div>
+    </div>
+    <button (click)="handleSubmit()" type="button" class="btn btn-primary">Choose</button>
+  </div>
+</div>
+
