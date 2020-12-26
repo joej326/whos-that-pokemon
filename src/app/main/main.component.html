@@ -5,9 +5,9 @@
   <div class="container-main">
     <h1 *ngIf="status !== 'success'">Who's that Pokémon?</h1>
     <h1 *ngIf="status === 'success'">It's {{ displayedPokemon?.name | titlecase }}!</h1>
-    <div class="statuses">
+    <div [style.visibility]="status === 'failure' ? 'visible' : 'hidden'" class="statuses">
       <!-- <h2 *ngIf="status === 'success'" class="success">SUCCESS!</h2> -->
-      <h2 *ngIf="status === 'failure'" class="failure">FAILURE! x {{ failedTimes }}</h2>
+      <h2 class="failure">FAILURE! x {{ failedTimes }}</h2>
     </div>
     <div class="image">
       <img [style.filter]="correctSubmit ? 'unset' : 'brightness(0%)'" [src]="displayedPokemon?.sprites?.front_default" alt="">
