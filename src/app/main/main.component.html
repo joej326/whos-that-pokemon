@@ -1,8 +1,14 @@
 
 
 
-<div  class="main">
+<div class="main">
   <div class="container-main">
+    <h1 *ngIf="status !== 'success'">Who's that Pokémon?</h1>
+    <h1 *ngIf="status === 'success'">It's {{ displayedPokemon?.name | titlecase }}!</h1>
+    <div class="statuses">
+      <!-- <h2 *ngIf="status === 'success'" class="success">SUCCESS!</h2> -->
+      <h2 *ngIf="status === 'failure'" class="failure">FAILURE! x {{ failedTimes }}</h2>
+    </div>
     <div class="image">
       <img [style.filter]="correctSubmit ? 'unset' : 'brightness(0%)'" [src]="displayedPokemon?.sprites?.front_default" alt="">
     </div>
@@ -14,7 +20,8 @@
         <label class="form-check-label" [for]="choice?.id">&nbsp;&nbsp;{{ choice?.name | titlecase }}</label>
       </div>
     </div>
-    <button (click)="handleSubmit()" type="button" class="btn btn-primary">Choose</button>
+    <button *ngIf="status !== 'success'" (click)="handleSubmit()" type="button" class="btn btn-primary" [style.cursor]="choiceMade ? 'unset' : 'not-allowed'" [disabled]="!choiceMade">Choose</button>
+    <button *ngIf="status === 'success'" (click)="handleReset()" type="button" class="btn btn-primary">Reset</button>
   </div>
 </div>
 

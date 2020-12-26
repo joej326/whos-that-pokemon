@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'whos-that-pokemon';
+  resetComponent = false;
+
+  handleResetComponent(): void {
+    this.resetComponent = true;
+
+    setTimeout(() => {
+      this.resetComponent = false;
+    }, 100);
+  }
 }

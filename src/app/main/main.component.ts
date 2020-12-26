@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Observable } from 'rxjs';
 import { FetchService } from '../fetch.service';
@@ -17,9 +17,12 @@ export class MainComponent implements OnInit {
   choices = [];
   choiceMade = false;
   chosenCorrectly = false;
+  failedTimes = 0;
   correctSubmit = false;
   alreadyFetched = [];
   obsArray: Observable<any>[] = new Array();
+  status: 'failure' | 'success';
+  @Output() resetComponent = new EventEmitter();
 
   constructor(private fetchService: FetchService) { }
 
@@ -34,6 +37,7 @@ export class MainComponent implements OnInit {
       (data) => {
         console.log(data);
         this.displayedPokemon = data;
+        this.alreadyFetched.push(randNum);
         // this.urls = data.results.map((r: any) => r.url);
         this.getRemainingPokemon();
       }
@@ -85,11 +89,16 @@ export class MainComponent implements OnInit {
     if (this.chosenCorrectly) {
       this.correctSubmit = true;
       setTimeout(() => {
-        alert('Ian: it worked!');
+        this.status = 'success';
       }, 100);
     } else {
-      alert('I don\'t THINK so!');
+      this.status = 'failure';
+      this.failedTimes++;
     }
+  }
+
+  handleReset(): void {
+    this.resetComponent.emit();
   }
 
 }
