@@ -98,7 +98,8 @@ export class MainComponent implements OnInit {
   }
 
   handleReset(): void {
-    this.resetComponent.emit();
+    window.location.reload();
+    // this.resetComponent.emit();
   }
 
 }
